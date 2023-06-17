@@ -16,8 +16,10 @@ function App() {
   };
 
   return (
-    <div>
-      {loaded ? <CountriesList countriesData={countriesData}  /> : <button onClick={loadData}>Load the data</button>}
+    <div className='container'>
+      <div className='list_container'>
+        {loaded ? <CountriesList countriesData={countriesData}  /> : <button className='loadButton' onClick={loadData}>Load the data</button>}
+      </div>
     </div>
   );
 }
