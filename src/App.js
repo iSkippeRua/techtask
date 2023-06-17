@@ -1,23 +1,23 @@
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
+import CountriesList from './components/CountriesList';
 
 function App() {
+  const [countriesData, setCountriesData] = useState([]);
+  const [loaded, setLoaded] = useState(false);
+
+  const loadData = () => {
+    fetch("https://restcountries.com/v2/all?fields=name,region,area")
+      .then((response) => response.json())
+      .then((json) => {
+        setCountriesData(json);
+        setLoaded(true);
+      });
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {loaded ? <CountriesList countriesData={countriesData}  /> : <button onClick={loadData}>Load the data</button>}
     </div>
   );
 }
