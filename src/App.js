@@ -8,6 +8,7 @@ function App() {
   const [countriesData, setCountriesData] = useState([]);
   const [loaded, setLoaded] = useState(false);
   const [filterTextValue, setFilterTextValue] = useState('all')
+  const [buttonStatus, setButtonStatus] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [countriesPerPage, setCountriesPerPage] = useState(10); 
 
@@ -15,7 +16,8 @@ function App() {
     fetch("https://restcountries.com/v2/all?fields=name,region,area")
       .then((response) => response.json())
       .then((json) => {
-        setCountriesData(json);
+        const sortedAlph = json.sort((a,b) => a.name.localeCompare(b.name));
+        setCountriesData(sortedAlph);
         setLoaded(true);
       });
   };
@@ -34,11 +36,18 @@ function App() {
 
   const onFilterValueSelected = (filterValue) => {
     setFilterTextValue(filterValue);
+    setCurrentPage(1);
   }
+
+  function sortButtonStatus (status) {
+    setButtonStatus(status);
+  };
 
   const lastCountryIndex = currentPage * countriesPerPage;
   const firstCountryIndex = lastCountryIndex - countriesPerPage;
-  const currentCountries = filteredCountriesList.slice(firstCountryIndex, lastCountryIndex);
+  const currentCountries = buttonStatus ? filteredCountriesList.slice(firstCountryIndex, lastCountryIndex) : filteredCountriesList.reverse().slice(firstCountryIndex, lastCountryIndex);
+
+  //filteredCountriesList.slice(firstCountryIndex, lastCountryIndex);
 
   return (
     <div className='container'>
@@ -53,7 +62,7 @@ function App() {
       <CountriesFilter filterValueSelected={onFilterValueSelected} />
       
       <div className='list_container'>
-        {loaded ? <CountriesList countriesData={currentCountries} /> : <button className='loadButton' onClick={loadData}>Load the data</button>}
+        {loaded ? <CountriesList getButtonStatus={sortButtonStatus} countriesData={currentCountries} /> : <button className='loadButton' onClick={loadData}>Load the data</button>}
       </div>
   
       <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} totalCountries={filteredCountriesList.length} countriesPerPage={countriesPerPage} />

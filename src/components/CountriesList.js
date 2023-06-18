@@ -3,16 +3,18 @@ import './CountriesList.css';
 import CountryCard from "./CountryCard";
 import { v4 as uuidv4 } from 'uuid';
 
-function CountriesList ({countriesData}) {
+function CountriesList ({countriesData, getButtonStatus}) {
 
     const [buttonArrowStatus, setButtonArrowStatus] = useState(false);
 
-    const sortAscending = () => {
-        setButtonArrowStatus(false);
-    }
-    
     const sortDescending = () => {
         setButtonArrowStatus(true);
+        getButtonStatus(buttonArrowStatus);
+    }
+
+    const sortAscending = () => {
+        setButtonArrowStatus(false);
+        getButtonStatus(buttonArrowStatus);
     }
 
     const statusFalse = <ul className="countryList">
@@ -29,7 +31,7 @@ function CountriesList ({countriesData}) {
                         </ul>
 
     const statusTrue = <ul className="countryList">
-                            {countriesData.reverse().map((country) => {
+                            {countriesData.map((country) => {
                                 return(
                                     <CountryCard 
                                         key={uuidv4()}
