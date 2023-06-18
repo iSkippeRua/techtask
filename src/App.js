@@ -2,11 +2,14 @@ import React, {useState} from 'react';
 import './App.css';
 import CountriesList from './components/CountriesList';
 import CountriesFilter from './components/CountriesFilter';
+import Pagination from './components/Pagination';
 
 function App() {
   const [countriesData, setCountriesData] = useState([]);
   const [loaded, setLoaded] = useState(false);
   const [filterTextValue, setFilterTextValue] = useState('all')
+  const [currentPage, setCurrentPage] = useState(1);
+  const [countriesPerPage, setCountriesPerPage] = useState(10); 
 
   const loadData = () => {
     fetch("https://restcountries.com/v2/all?fields=name,region,area")
@@ -33,6 +36,10 @@ function App() {
     setFilterTextValue(filterValue);
   }
 
+  const lastCountryIndex = currentPage * countriesPerPage;
+  const firstCountryIndex = lastCountryIndex - countriesPerPage;
+  const currentCountries = filteredCountriesList.slice(firstCountryIndex, lastCountryIndex);
+
   return (
     <div className='container'>
 
@@ -46,8 +53,10 @@ function App() {
       <CountriesFilter filterValueSelected={onFilterValueSelected} />
       
       <div className='list_container'>
-        {loaded ? <CountriesList countriesData={filteredCountriesList} /> : <button className='loadButton' onClick={loadData}>Load the data</button>}
+        {loaded ? <CountriesList countriesData={currentCountries} /> : <button className='loadButton' onClick={loadData}>Load the data</button>}
       </div>
+  
+      <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} totalCountries={filteredCountriesList.length} countriesPerPage={countriesPerPage} />
     </div>
   );
 }
