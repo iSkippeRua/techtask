@@ -4,3 +4,36 @@
     gap: 15px;
     text-align: start;
 }
+
+.countryListContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.sortButton {
+    padding: 20px 30px;
+    border-radius: 20px;
+    background-color: #8fff8f;
+    text-transform: uppercase;
+    font-family: Roboto;
+    font-weight: 500;
+}
+
+.arrow {
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+    margin-left: 5px;
+}
+
+.up {
+    transform: rotate(-135deg);
+    margin-top: 5px;
+}
+
+.down {
+    transform: rotate(45deg);
+    margin-bottom: 5px;
+}
