@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+.countryCard {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    background-color: #CCFFCC;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.infoBlock {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.infoText {
+    font-family: Roboto;
+    font-weight: normal;
+    font-size: 16px;
+}
+
+.labelText {
+    font-family: Roboto;
+    font-weight: 500;
+    font-size: 20px;
+}

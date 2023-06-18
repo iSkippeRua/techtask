@@ -1,14 +1,15 @@
 import React from "react";
+import './CountryCard.css';
 
 function CountryCard ({name, region, area}) {
     return(
-        <div>
+        <div className="countryCard">
             <div className="labelBlock">
-                <p>{name}</p>
+                <p className="labelText">Country: {name}</p>
             </div>
             <div className="infoBlock">
-                <p>{region}</p>
-                <p>{area}</p>
+                <p className="infoText">Region: {region}</p>
+                <p className="infoText">Area: {area}</p>
             </div>
         </div>
     );
