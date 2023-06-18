@@ -31,7 +31,9 @@ ul li{list-style: none;}
     padding: 15px;
     display: flex;
     flex-direction: column;
+    gap: 15px;
     min-height: 100%;
+    background-color: #e3ffe3;
 }
 
 /* ----- */
@@ -39,8 +41,37 @@ ul li{list-style: none;}
 .loadButton {
     padding: 20px 30px;
     border-radius: 20px;
-    background-color: #32E038;
+    background-color: #8fff8f;
     text-transform: uppercase;
     font-family: Roboto;
     font-weight: 500;
+}
+
+.list_container {
+    text-align: center;
+}
+
+.sortButton {
+    padding: 20px 30px;
+    border-radius: 20px;
+    background-color: #8fff8f;
+    text-transform: uppercase;
+    font-family: Roboto;
+    font-weight: 500;
+}
+
+.arrow {
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+    margin-left: 5px;
+}
+
+.up {
+    transform: rotate(-135deg);
+}
+
+.down {
+    transform: rotate(45deg);
 }
