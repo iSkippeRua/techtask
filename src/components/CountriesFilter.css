@@ -1,6 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
 .filter {
     background-color: #8fff8f;
     padding: 15px;
     border-radius: 15px;
     border: #000 1px solid;
+    font-family: Roboto;
+    font-weight: 500;
 }
