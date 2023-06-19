@@ -1,4 +1,5 @@
 import React from "react";
+import "./CountriesFilter.css";
 
 function CountriesFilter ({filterValueSelected}) {
 
@@ -8,7 +9,7 @@ function CountriesFilter ({filterValueSelected}) {
 
     return(
         <div className="filterContainer">
-            <select name='filter' onChange={onFilterValueChanged}>
+            <select className="filter" name='filter' onChange={onFilterValueChanged}>
                 <option value='all'>All</option>
                 <option value='area'>Area smaller then Lithuania</option>
                 <option value='oceania'>Region is Oceania</option>
